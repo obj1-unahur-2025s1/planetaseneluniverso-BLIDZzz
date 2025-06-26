@@ -1,0 +1,46 @@
+import universo.*
+
+describe "Universo" {
+    const persona1 = new Persona(edad = 15)
+    const persona2 = new Persona(edad = 20)
+    const persona3 = new Persona(edad = 20)
+    const persona4 = new Persona(edad = 20)
+
+    const muralla1 = new Muralla(longitud = 30)
+    const muralla2 = new Muralla(longitud = 30)
+
+    const museo1 = new Museo(superficie = 50, importancia = 4)
+
+    const planeta1 = new Planeta(habitantes = #{persona1, persona2, persona3, persona4}, construcciones = #{muralla1, muralla2, museo1})
+    
+    
+    const productor1 = new Productor(edad = 40)
+
+    const constructor1 = new Constructor(edad = 30,  region = "montaña")
+    const constructor2 = new Constructor(edad = 30,  region = "costa")
+    const constructor3 = new Constructor(edad = 30,  region = "llanura")
+
+    const planeta3 = new Planeta(habitantes = #{productor1, constructor1, constructor2, constructor3})
+    
+    
+    method initialize() {
+        persona1.gastarMonedas(5)
+    }
+    test "Prueba1" {
+        assert.equals(3, planeta1.delegacionDiplomatica().size())
+    }
+
+    test "Es Valiosdo" {
+        assert.that(planeta1.esValioso())
+    }
+
+    test "Este no es valioso" {
+        const planeta2 = new Planeta()
+        assert.notThat(planeta2.esValioso())
+    }
+
+    test "Algunos cambios" {
+        persona1.ganarMonedas(20)
+        assert.equals(4, planeta1.delegacionDiplomatica().size())
+    }
+}
